@@ -1,4 +1,7 @@
-FLAG: Foundation model representation with Latent diffusion Alignment via Graph for spatial gene expression prediction
+# FLAG: Foundation model representation with Latent diffusion Alignment via Graph for spatial gene expression prediction
+
+[![ICML 2026](https://img.shields.io/badge/ICML-2026-blue.svg)](https://icml.cc/)
+[![License](https://img.shields.io/badge/License-Apache_2.0-green.svg)](LICENSE)
 
 This is the official PyTorch implementation of the paper "FLAG: Foundation model representation with Latent diffusion Alignment via Graph for spatial gene expression prediction", accepted at ICML 2026.
 
@@ -6,9 +9,9 @@ This is the official PyTorch implementation of the paper "FLAG: Foundation model
 
 📖 Abstract
 
-Predicting spatial gene expression from routine H&E images enables high-resolution molecular profiling at scale, especially for large retrospective cohorts. However, current models mostly treat gene expression as a series of isolated pointwise tasks. While effective for numerical fitting, this approach overlooks crucial biological structures: the functional coordination between genes and their organized distribution across tissue.
-FLAG reframes this task as structured distribution modeling. Through systematic exploration, we identified the Gene Dimension Curse: joint modeling of gene expression and their spatial interactions fails in high-dimensional gene spaces.
-To gracefully overcome this, FLAG introduces:
+Current gene prediction models mostly treat gene expression as a series of isolated pointwise tasks. While effective for numerical fitting, this approach overlooks crucial biological structures: the functional coordination between genes and their organized distribution across tissue.
+
+FLAG reframes this task as structured distribution modeling. To gracefully overcome this, FLAG introduces:
 
 1. Spatial Graph Encoder: Captures spatial topological relationships between tissue spots, providing spatial embeddings as conditioning signals to guide the gene-level diffusion process.
 
@@ -17,7 +20,8 @@ To gracefully overcome this, FLAG introduces:
 3. Furthermore, to rigorously assess structural preservation, we propose two novel structure-aware evaluation metrics: Gene Structural Correlation (GSC) and Spatial Structural Correlation (SSC).
 
 🏗️ FLAG Framework
-The FLAG framework: The left module uses a pathology foundation model to extract H&E features and construct a spatial graph. The right module employs a Conditional Diffusion Transformer (DiT) guided by the spatial graph context to denoise gene expressions, while an intermediate GFM alignment loss jointly enforces spatial coherence and biological structural fidelity.
+
+The left module uses a pathology foundation model to extract H&E features and construct a spatial graph. The right module employs a Conditional Diffusion Transformer (DiT) guided by the spatial graph context to denoise gene expressions, while an intermediate GFM alignment loss jointly enforces spatial coherence and biological structural fidelity.
 <p align="center">
   <img src="assets/FLAG.png" width="80%" alt="LDM Architecture">
 </p>

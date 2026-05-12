@@ -24,9 +24,11 @@ The FLAG framework: The left module uses a pathology foundation model to extract
 
 📝 Citation
 If you find our code, concepts (like the Gene Dimension Curse), or metrics (GSC/SSC) useful in your research, please consider citing our paper:
+```bibtex
 @inproceedings{si2026flag,
   title={FLAG: Foundation model representation with Latent diffusion Alignment via Graph for spatial gene expression prediction},
   author={Qi Si and Penglei Wang and Yushuai Wu and Yifeng Jiao and Xuyang Liu and Xin Guo and Yuan Qi and Yuan Cheng},
   booktitle={Proceedings of the 43rd International Conference on Machine Learning (ICML)},
   year={2026}
 }
+```

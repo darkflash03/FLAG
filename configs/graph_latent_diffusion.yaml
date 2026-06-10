@@ -1,0 +1,63 @@
+pipeline: train_graph_latent_diffusion
+seed: 42
+device: cuda:0
+mode: 'repa_graph_fixed' # 'repa_graph_fixed' or 'repa_cell_graph_fixed' or 'graph_fixed'
+
+data_config:
+  data_dir: /path/to/data_dir
+  gene_list_filename: hmhvg_geneformer_gene_list.txt
+  llm_embedding_dir: /path/to/foundation_gene_embedding
+  crop_size: 2048
+  stride_size: 2048
+  img_encoder_name: uni
+  feature_dir: /path/to/feature_dir
+  train_slides_list: /path/to/train_list.txt
+  valid_slides_list: /path/to/valid_list.txt
+  test_slides_list: /path/to/test_list.txt
+  dataset_name: 'graph_dataset'
+
+sde_config:
+  name: 'vesde'
+  sigma_min: 0.01
+  sigma_max: 10.0
+  t_min: 0.01
+  sampler: 'graph_ode_sampler'
+
+
+model_config:
+  name: 'graph_dit_repa'
+  edge_dim: 1
+  node_cond_dim: 1024
+  edge_cond_dim: 2
+  d_model: 384
+  n_layers: 6
+  n_heads: 8
+  dropout: 0.1
+  edge_feat_dim: 384
+  ada_norm: False
+  use_cond_e_in_attn: False
+  d_gene: 512
+
+  hidden_dim: 384
+  num_heads: 6
+  dit_num_blocks: 12
+  encoder_layer: 8
+  projector_dim: 2048
+  z_dim: 1152
+  mlp_ratio: 4.0
+
+train_config:
+  batch_size: 1
+  epochs: 2000
+  lr: 0.0003
+  wd: 0.01
+  grad_clip: 1.0
+  result_dir:  /path/to/output_dir
+  patience: 20
+  eval_interval: 10
+  gradient_accumulate_every: 16
+
+test_config:
+  ckpt: /path/to/ckpt
+  sample_num: 8
+  mode: 'eval'

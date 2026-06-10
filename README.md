@@ -5,7 +5,6 @@
 
 This is the official PyTorch implementation of the paper "FLAG: Foundation model representation with Latent diffusion Alignment via Graph for spatial gene expression prediction", accepted at ICML 2026.
 
-🚨 COMING SOON: We are currently cleaning up and refactoring the codebase. The full official PyTorch implementation will be publicly released here in the coming months. Thanks for your patience! 🚨
 
 📖 Abstract
 
@@ -25,6 +24,33 @@ The left module uses a pathology foundation model to extract H&E features and co
 <p align="center">
   <img src="assets/FLAG.png" width="80%" alt="LDM Architecture">
 </p>
+
+##  🚀 Usage
+Mode 1: Graph Diffusion Mode (motivation attempt)
+First, we train the both edge and node (Using graph_diffusion config, this config has two modes: 'graph_diffusion_fixed' or 'graph_diffusion_learned')
+When use graph_diffusion_fixed which means fixed topology (edge fixed) used to generate node gene expression.
+When use graph_diffusion_learned which means learned topology (edge active) used to generate node gene expression.
+
+Run the training/test script (revise pipeline type):
+```bash
+python main.py --config configs/graph_diffusion.yaml
+```
+
+Mode 2: Graph Latent Diffusion Mode (FLAG Arch)
+Next, we train the Graph Latent Diffusion Model (FLAG) to generate the gene expressions (Using graph_latent_diffusion config, this config has three modes: 'graph_fixed' or 'repa_graph_fixed' or 'repa_cell_graph_fixed')
+When use graph_fixed which means fixed topology as condtional diffusion prior and we don't use llm embedding to generate node gene expression.
+When use repa_graph_fixed which means fixed topology as condtional diffusion prior and we use gene foundation embedding on gene level to generate node gene expression.
+When use repa_cell_graph_fixed which means fixed topology as condtional diffusion prior and we use gene foundation embedding on cell level to generate node gene expression.
+
+
+Run the training script (revise pipeline type):
+```bash
+python main.py --config configs/graph_latent_diffusion.yaml
+```
+
+
+
+if you have any questions about our paper/code, please contact sqwd0616@gmail.com.
 
 📝 Citation
 If you find our code, concepts (like the Gene Dimension Curse), or metrics (GSC/SSC) useful in your research, please consider citing our paper:
